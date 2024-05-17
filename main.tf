@@ -23,11 +23,11 @@ locals {
   # Replace ORG_ID, PUBLIC_KEY and PRIVATE_KEY with your Atlas variables
   mongodb_atlas_api_pub_key = "qstvzygd"
   mongodb_atlas_api_pri_key = "a28238cb-55ce-4d11-b3ac-0b211fec03b4"
-  mongodb_atlas_org_id  = "662088f5fa8e49104f7d931c"
+  mongodb_atlas_org_id      = "662088f5fa8e49104f7d931c"
 
   # Replace USERNAME And PASSWORD with what you want for your database user
   # https://docs.atlas.mongodb.com/tutorial/create-mongodb-user-for-cluster/
-  mongodb_atlas_database_username = "root"
+  mongodb_atlas_database_username      = "root"
   mongodb_atlas_database_user_password = "root"
 
   # Replace IP_ADDRESS with the IP Address from where your application will connect
@@ -44,7 +44,7 @@ terraform {
       source = "mongodb/mongodbatlas"
     }
   }
- }
+}
 
 provider "mongodbatlas" {
   public_key  = local.mongodb_atlas_api_pub_key
@@ -63,8 +63,8 @@ resource "mongodbatlas_project" "lanchonete_app" {
 # Create a Shared Tier Cluster
 #
 resource "mongodbatlas_cluster" "lachonete_mongodb_cluster" {
-  project_id              = mongodbatlas_project.lanchonete_app.id
-  name                    = "lachonete-mongodb-cluster"
+  project_id = mongodbatlas_project.lanchonete_app.id
+  name       = "lachonete-mongodb-cluster"
 
   # Provider Settings "block"
   provider_name = "TENANT"
@@ -82,7 +82,7 @@ resource "mongodbatlas_cluster" "lachonete_mongodb_cluster" {
   provider_instance_size_name = "M0"
 
   # Will not change till new version of MongoDB but must be included
-  mongo_db_major_version = "4.4"
+  mongo_db_major_version       = "4.4"
   auto_scaling_disk_gb_enabled = "false"
 
   backup_enabled = false
